@@ -1,0 +1,33 @@
+{
+  "originHash" : "9af26285a0cfa899a5156998866f6d182048c01d3af9d8fc60cf867088e79a88",
+  "pins" : [
+    {
+      "identity" : "routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/obvios/Routing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f5d8695ef977739606c1468e48403de0d28be1ff"
+      }
+    },
+    {
+      "identity" : "swiftfulrecursiveui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftfulThinking/SwiftfulRecursiveUI.git",
+      "state" : {
+        "revision" : "3d2d5ac6efe70874fb5ffb2f8e1d5ccd457f4366",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swiftfulrouting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftfulThinking/SwiftfulRouting.git",
+      "state" : {
+        "revision" : "f169d9a96741a3ec520d21d7da3cae06d7590700",
+        "version" : "6.1.8"
+      }
+    }
+  ],
+  "version" : 3
+}

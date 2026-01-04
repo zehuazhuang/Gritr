@@ -6,13 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DDD187AB2F0A14D100F85622 /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = DDD187AA2F0A14D100F85622 /* Routing */; };
+		DDD187B02F0A197500F85622 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = DDD187AF2F0A197500F85622 /* SwiftfulRouting */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DDED3D942F03BB1A007B4E07 /* Gritr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gritr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DD456AAD2F03C22900D37C10 /* Exceptions for "Gritr" folder in "Gritr" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DDED3D932F03BB1A007B4E07 /* Gritr */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DDED3D962F03BB1A007B4E07 /* Gritr */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DD456AAD2F03C22900D37C10 /* Exceptions for "Gritr" folder in "Gritr" target */,
+			);
 			path = Gritr;
 			sourceTree = "<group>";
 		};
@@ -23,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDD187AB2F0A14D100F85622 /* Routing in Frameworks */,
+				DDD187B02F0A197500F85622 /* SwiftfulRouting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +85,8 @@
 			);
 			name = Gritr;
 			packageProductDependencies = (
+				DDD187AA2F0A14D100F85622 /* Routing */,
+				DDD187AF2F0A197500F85622 /* SwiftfulRouting */,
 			);
 			productName = Gritr;
 			productReference = DDED3D942F03BB1A007B4E07 /* Gritr.app */;
@@ -94,6 +116,10 @@
 			);
 			mainGroup = DDED3D8B2F03BB1A007B4E07;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */,
+				DDD187AE2F0A197500F85622 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDED3D952F03BB1A007B4E07 /* Products */;
 			projectDirPath = "";
@@ -256,6 +282,10 @@
 				DEVELOPMENT_TEAM = 6NUFR97X3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gritr/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the use of your camera for shooting so that you can capture and upload videos or pictures. All the recorded content will be securely stored on your personal device, and it will only be uploaded or shared with your explicit consent.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the use of your microphone to record audio, so that you can perform in the concert hall or have voice chats. We will only use or access the recorded content after obtaining your explicit consent.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your photo album contents for content selection, so that you can choose and upload video or image works. All the selected files will only be used for the purposes you have authorized and will be securely stored on your device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -267,7 +297,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.Gritr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.gritr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -289,6 +319,10 @@
 				DEVELOPMENT_TEAM = 6NUFR97X3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gritr/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires the use of your camera for shooting so that you can capture and upload videos or pictures. All the recorded content will be securely stored on your personal device, and it will only be uploaded or shared with your explicit consent.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the use of your microphone to record audio, so that you can perform in the concert hall or have voice chats. We will only use or access the recorded content after obtaining your explicit consent.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your photo album contents for content selection, so that you can choose and upload video or image works. All the selected files will only be used for the purposes you have authorized and will be securely stored on your device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -300,7 +334,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.Gritr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.gritr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -334,6 +368,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/obvios/Routing.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		DDD187AE2F0A197500F85622 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDD187AA2F0A14D100F85622 /* Routing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */;
+			productName = Routing;
+		};
+		DDD187AF2F0A197500F85622 /* SwiftfulRouting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDD187AE2F0A197500F85622 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
+			productName = SwiftfulRouting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDED3D8C2F03BB1A007B4E07 /* Project object */;
 }
