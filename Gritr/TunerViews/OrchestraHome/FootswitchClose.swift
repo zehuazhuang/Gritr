@@ -3,6 +3,9 @@
 import SwiftUI
 
 struct FootswitchClose: View {
+    let fislidenRoomId : Int
+    @Binding var trdreShow: Bool
+    let onUmgaug : () -> Void
     var body: some View {
         ZStack{
             Color.black
@@ -32,7 +35,7 @@ struct FootswitchClose: View {
                     Spacer().frame(height: 47)
                     HStack(spacing:15){
                         Button(action: {
-                                            
+                            trdreShow = false
                                         }) {
                                             Text("Cancel")
                                                 .font(.system(size: 18, weight: .bold))
@@ -44,7 +47,10 @@ struct FootswitchClose: View {
                                         )
                                         .cornerRadius(60)
                         Button(action: {
-                                            
+                            SustainStorge.shared.remoUmbpickRoom(by: fislidenRoomId)
+                            
+                            trdreShow = false
+                            onUmgaug()
                                         }) {
                                             Text("Sure")
                                                 .font(.system(size: 18, weight: .bold))

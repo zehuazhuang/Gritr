@@ -10,15 +10,18 @@ struct GritrApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if store.epickingLIndex != -1 {
-                    SemihollowHome()
-                } else {
-                    RouterView { router in
-                        HeadstockInit()
-                            .environment(\.router, router)
+                RouterView { router in
+                    Group {
+                        if store.epickingLIndex != -1 {
+                            SemihollowHome()
+                        } else {
+                            HeadstockInit()
+                        }
                     }
+                    .environment(\.router, router)
                 }
 
+                
                 ToastView()
             }
         }

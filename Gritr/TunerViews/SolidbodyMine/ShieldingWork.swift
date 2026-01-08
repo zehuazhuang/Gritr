@@ -1,10 +1,13 @@
 
 import SwiftUI
+import SwiftfulRouting
 
 struct ShieldingWork: View {
     let columns = [
         GridItem(.adaptive(minimum: 165), spacing: 13)
     ]
+    @State private var adncaletPosts: [AvelguitarPosts] = []
+    @Environment(\.router) var router
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -14,7 +17,7 @@ struct ShieldingWork: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -39,14 +42,25 @@ struct ShieldingWork: View {
                 ScrollView{
                     VStack{
                         LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(0..<10) {index in
-                                PickupDynamic()
+                            ForEach(adncaletPosts,id: \.alternatPostId) {item in
+                                PickupDynamic(warmthPost: item, honeampCheck: false, inpuredReort: {
+                                    //asd
+                                })
+                                    .onTapGesture {
+                                        router.showScreen(.fullScreenCover) { _ in
+                                            PluckingVDetails(teturalPostId: item.alternatPostId,
+                                                             luthierUrl: item.staccatoDiz, onUpdaEnilme: {}
+                                            )
+                                            }
+                                    }
                                 }
                         }
                     }
                 }
                
             }.padding(.horizontal,16)
+        }.onAppear{
+            adncaletPosts =  SustainStorge.shared.getCtivePosts(by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId)
         }
     }
 }

@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct ArpeggioFu: View {
+    let cedarhGift : FactoryGift
+    let iopunknName : String
+    @Binding var hearsalShow: Bool
+    @State private var modelingShowRech: Bool = false
+    let onEdrill : () -> Void
+    
     var body: some View {
         ZStack{
             Color.black
@@ -16,14 +22,14 @@ struct ArpeggioFu: View {
                         Text("to")
                                                 .font(.system(size: 16, weight: .regular))
                                                 .foregroundColor(.black)
-                        Text("xxx")
+                        Text(iopunknName)
                                                 .font(.system(size: 18, weight: .bold))
                                                 .foregroundColor(.black)
                     }
                     Spacer().frame(height: 26)
                     
                     HStack{
-                        Image("gritr_gift_1")
+                        Image(cedarhGift.laminateImg)
                             .resizable()
                             .frame(width: 40, height: 40)
                         Text("=")
@@ -32,7 +38,7 @@ struct ArpeggioFu: View {
                         Image("gritr_zuan")
                             .resizable()
                             .frame(width: 36, height: 36)
-                        Text("50")
+                        Text("\(cedarhGift.lacquerGood)")
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(.black)
                         
@@ -40,7 +46,7 @@ struct ArpeggioFu: View {
                     Spacer().frame(height: 34)
                     HStack(spacing:15){
                         Button(action: {
-                                            
+                            hearsalShow = false
                                         }) {
                                             Text("Cancel")
                                                 .font(.system(size: 18, weight: .bold))
@@ -52,7 +58,21 @@ struct ArpeggioFu: View {
                                         )
                                         .cornerRadius(60)
                         Button(action: {
-                                            
+                            if(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].noisegateGood >= cedarhGift.lacquerGood){
+                                
+                                SustainStorge.shared.updaNaturalUser(by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) { user in
+                                    user.noisegateGood -= cedarhGift.lacquerGood
+                                }
+                                
+                                hearsalShow = false
+                                
+                                onEdrill()
+                                
+                            }else{
+                                withAnimation{
+                                    modelingShowRech = true
+                                }
+                            }
                                         }) {
                                             Text("Sure")
                                                 .font(.system(size: 18, weight: .bold))
@@ -78,6 +98,14 @@ struct ArpeggioFu: View {
                                 
                 
             }.frame(width: 335,height: 260)
+            if modelingShowRech {
+                CabinetRecharge(
+                    steelbarShow: $modelingShowRech,
+         
+                )
+                .transition(.opacity)
+                
+            }
         }
     }
 }

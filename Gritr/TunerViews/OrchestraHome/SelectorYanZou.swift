@@ -1,8 +1,14 @@
 
 
 import SwiftUI
+import SwiftfulRouting
 
 struct SelectorYanZou: View {
+    @Environment(\.router) var router
+    @State private var harmonicRooms: [VoicingRooms] = []
+    @State private var inneranReShow: Bool = false
+    @State private var hespiritUserId: Int = -1
+    let onUpdaTranqu: () -> Void
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -12,7 +18,8 @@ struct SelectorYanZou: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
+                        onUpdaTranqu()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -46,31 +53,59 @@ struct SelectorYanZou: View {
                                 .foregroundColor(.black)
                             Spacer()
                             
-                            Button(action: {
-                                
-                            }) {
+                           
                                 Text("Create")
                                     .font(.system(size: 14, weight: .black))
                                     .foregroundColor(.white)
                                     .frame(width: 90, height: 40)
+                                    .background(
+                                        .black
+                                    )
+                                    .cornerRadius(60)
                                 
-                            }
-                            .background(
-                                .black
-                            )
-                            .cornerRadius(60)
+                            
+                            
                         }.padding(.horizontal,15)
                         
                     }.frame(height: 90)
                         .frame(maxWidth: .infinity)
                         .padding(.bottom,10)
+                        .onTapGesture {
+                            router.showScreen(.fullScreenCover) { _ in
+                                UncoatedCreate { newRoom in
+                                   
+                                    router.showScreen(.fullScreenCover) { _ in
+                                        PlectrumYanTing(
+                                            legatoRoom: newRoom,
+                                            onUpdaProgr: {
+                                               
+                                            }, onUpdaCmind: {}
+                                        )
+                                    }
+                                }
+                            }
+                        }
                         Text("Recommended:")
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(.white)
                         ScrollView(showsIndicators: false){
                             VStack(spacing:20){
-                                ForEach(0..<3){index in
-                                    HeneleckRoom()
+                                ForEach(harmonicRooms,id: \.ypickingRoomId){item in
+                                    HeneleckRoom(minorscaRoom: item, locanckiRep: {
+                                        withAnimation{
+                                            inneranReShow = true
+                                            hespiritUserId = item.strumminUserId
+                                        }
+                                    })
+                                        .onTapGesture{
+                                            router.showScreen(.fullScreenCover) { _ in
+                                                
+                                                PlectrumYanTing(legatoRoom: item, onUpdaProgr: {
+                                                    harmonicRooms = SustainStorge.shared.chromaticRooms
+                                                }, onUpdaCmind: {})
+                                                   
+                                                           }
+                                        }
                                 }
                             }
                         }
@@ -78,6 +113,19 @@ struct SelectorYanZou: View {
                     
                 }
             }.padding(.horizontal,16)
+        }.deondeReportOverlay(isRumchaba: $inneranReShow, piroueUserId: hespiritUserId){
+            loadArdenResult()
+        }
+        .onAppear{
+    
+            loadArdenResult()
+            
+        }
+    }
+    func loadArdenResult(){
+        let ghtiBlock = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock
+        harmonicRooms = SustainStorge.shared.chromaticRooms.filter{
+            !ghtiBlock.contains($0.strumminUserId)
         }
     }
 }

@@ -3,8 +3,19 @@
 import SwiftUI
 
 struct DexterityReport: View {
+    let hearwUserId : Int
+    @Binding var gensootShow: Bool
+    let goRepoDet : () -> Void
+    let onBlock: () -> Void
     var body: some View {
         ZStack{
+            Color.black
+                .opacity(0.45)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    gensootShow = false
+                }
+            
             Image("gritr_bottommb")
                             .resizable()
                             .frame(height: 254)
@@ -13,7 +24,8 @@ struct DexterityReport: View {
             VStack(spacing:22){
                 Spacer()
                 Button(action: {
-                                   
+                    gensootShow = false
+                    goRepoDet()
                                }) {
                                    Text("Report")
                                        .font(.system(size: 18, weight: .bold))
@@ -34,7 +46,21 @@ struct DexterityReport: View {
                                )
                                .cornerRadius(60)
                 Button(action: {
-                                   
+                    gensootShow = false
+                    SustainStorge.shared.updaNaturalUser(
+                        by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId
+                    ) { user in
+
+                       
+                        if !user.bridpicBlock.contains(hearwUserId) {
+                            user.bridpicBlock.append(hearwUserId)
+                        }
+                        
+                        
+                       
+                    }
+                    ToastManager.shared.show("Blocked")
+                    onBlock()
                                }) {
                                    Text("Blacklist")
                                        .font(.system(size: 18, weight: .bold))
@@ -55,7 +81,7 @@ struct DexterityReport: View {
                                )
                                .cornerRadius(60)
                 Button(action: {
-                                   
+                    gensootShow = false
                                }) {
                                    Text("Cancel")
                                        .font(.system(size: 18, weight: .bold))

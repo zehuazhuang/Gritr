@@ -1,8 +1,7 @@
 
 
 import SwiftUI
-
-
+import SwiftfulRouting
 
     struct UncoatedCreate: View {
         @State private var buckerName: String = ""
@@ -11,6 +10,8 @@ import SwiftUI
         enum Field: Hashable {
             case buckerName, volumeContent
         }
+        @Environment(\.router) var router
+        let onCreated: (VoicingRooms) -> Void
         var body: some View {
             ZStack{
                 Image("gritr_backg")
@@ -21,7 +22,7 @@ import SwiftUI
                     VStack{
                         HStack{
                             Button(action: {
-                                                
+                                router.dismissScreen()
                                             }) {
                                                 Image("gritr_back")
                                                     .resizable()
@@ -100,6 +101,28 @@ import SwiftUI
                                 
                                 Spacer()
                                 Button(action: {
+                                    if(buckerName != "" && volumeContent != ""){
+                                        
+                                        let actoryUser = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex]
+                                        
+                                        let newRoducti = VoicingRooms(
+                                            ypickingRoomId: SustainStorge.shared.chromaticRooms.count+1,
+                                            strumminUserId: actoryUser.hykingUserId,
+                                            economJies: volumeContent,
+                                            intervalName: buckerName,
+                                            asebendBeiYin: "",
+                                            orscaleImg: actoryUser.strumAvatar,
+                                            hammeronLook: 0,
+                                            pentatoniHot: 0
+                                        )
+                                        SustainStorge.shared.addPracticeaRoom(
+                                            newRoducti
+                                            )
+                                       
+                                        onCreated(newRoducti)
+                                        router.dismissScreen()
+                                    }
+                                    
                                                }) {
                                                    Text("Create")
                                                        .font(.system(size: 18, weight: .bold))

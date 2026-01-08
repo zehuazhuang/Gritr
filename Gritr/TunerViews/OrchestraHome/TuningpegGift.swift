@@ -1,11 +1,54 @@
 import SwiftUI
 
+struct FactoryGift: Identifiable {
+    let id: String
+    let laminateImg: String
+    let solidwoodPop: Int
+    let lacquerGood: Int
+}
+
 struct TuningpegGift: View {
+    @State private var etalslideShowFu: Bool = false
+    @Binding var backlineShow: Bool
+    let ineagiUser : ReverbUsers
+    @State private var alderHot: Int = 0
+    let factoryGifts: [FactoryGift] = [
+        FactoryGift(
+            id: "1",
+            laminateImg: "gritr_gift_1",
+            solidwoodPop: 1,
+            lacquerGood: 50
+        ),
+        FactoryGift(
+            id: "2",
+            laminateImg: "gritr_gift_2",
+            solidwoodPop: 3,
+            lacquerGood: 100
+        ),
+        FactoryGift(
+            id: "3",
+            laminateImg: "gritr_gift_3",
+            solidwoodPop: 5,
+            lacquerGood: 150
+        ),
+        FactoryGift(
+            id: "4",
+            laminateImg: "gritr_gift_4",
+            solidwoodPop: 8,
+            lacquerGood: 200
+        )
+    ]
+    @State private var pruceSelect: Int = -1
+    @Environment(\.router) var router
+    let onEdrill : (FactoryGift) -> Void
     var body: some View {
         ZStack{
             Color.black
                             .opacity(0.45)
                             .ignoresSafeArea()
+                            .onTapGesture {
+                                backlineShow = false
+                            }
                            
             VStack{
                 Spacer()
@@ -19,7 +62,7 @@ struct TuningpegGift: View {
                             Text("Give to")
                                                     .font(.system(size: 16, weight: .bold))
                                                     .foregroundColor(.black)
-                            Image("gritr_icon")
+                            Image(ineagiUser.strumAvatar)
                                 .resizable()
                                 .frame(width: 40, height: 40)
                                 .clipShape(Circle())
@@ -27,12 +70,12 @@ struct TuningpegGift: View {
                                     Circle()
                                         .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
                                 )
-                            Text("Ciarian")
+                            Text(ineagiUser.aidrivenName)
                                                     .font(.system(size: 14, weight: .medium))
                                                     .foregroundColor(.black)
                             Spacer()
                             Button(action: {
-                                               
+                                backlineShow = false
                                            }) {
                                                Image("gritr_close")
                                                                .resizable()
@@ -46,24 +89,24 @@ struct TuningpegGift: View {
                                            .clipShape(Circle())
                         }.padding(.horizontal,16)
                         HStack{
-                            Text("Popularity +3")
+                            Text("Popularity +\(alderHot)")
                                                     .font(.system(size: 12, weight: .black))
                                                     .foregroundColor(Color(red: 234/255, green: 66/255, blue: 190/255))
                             Spacer()
                         }.padding(.horizontal,16)
                         ScrollView(.horizontal,showsIndicators: false){
                             HStack{
-                                ForEach(0..<4){index in
+                                ForEach(factoryGifts,id: \.id){item in
                                     ZStack {
                                         VStack{
-                                            Image("gritr_gift_1")
+                                            Image(item.laminateImg)
                                                 .resizable()
                                                 .frame(width: 60, height: 60)
                                             HStack{
                                                 Image("gritr_zuan")
                                                     .resizable()
                                                     .frame(width: 18, height: 18)
-                                                Text("50")
+                                                Text("\(item.lacquerGood)")
                                                                         .font(.system(size: 10, weight: .bold))
                                                                         .foregroundColor(.black)
                                                 
@@ -78,15 +121,26 @@ struct TuningpegGift: View {
                                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                                             .stroke(
                                                 Color(red: 234/255, green: 66/255, blue: 190/255),
-                                                lineWidth: 2
+                                                lineWidth: pruceSelect == item.lacquerGood ? 2 : 0
                                             )
                                     ).padding(.vertical,2)
+                                        .onTapGesture {
+                                            pruceSelect = item.lacquerGood
+                                            alderHot = item.solidwoodPop
+                                        }
                                 }
                             }.padding(.horizontal,16)
                         }
                         
                         Button(action: {
-                                           
+                            withAnimation{
+                                etalslideShowFu = true
+                            }
+                            
+                            
+                            
+                            
+                            
                                        }) {
                                            Text("Give")
                                                .font(.system(size: 18, weight: .bold))
@@ -116,6 +170,18 @@ struct TuningpegGift: View {
                     
                 }
             }
+            
+            if etalslideShowFu {
+                if let countryGift = factoryGifts.first(where: {
+                    $0.lacquerGood == pruceSelect
+                }) {
+                    ArpeggioFu(cedarhGift: countryGift, iopunknName: ineagiUser.aidrivenName, hearsalShow: $etalslideShowFu, onEdrill: {
+                        onEdrill(countryGift)
+                    })
+                        .transition(.opacity)
+                }
+            }
+          
         }
     }
 }

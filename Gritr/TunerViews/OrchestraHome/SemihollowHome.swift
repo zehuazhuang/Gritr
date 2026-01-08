@@ -1,8 +1,15 @@
 import SwiftUI
+import SwiftfulRouting
 
 struct SemihollowHome: View {
     @State private var CoatedShow: Bool = false
+    @State private var erboardUsers: [ReverbUsers] = []
+    @State private var deadnotePosts: [AvelguitarPosts] = []
+    @State private var lmmutingRooms: [VoicingRooms] = []
+    @Environment(\.router) var router
     
+    @State private var inneranReShow: Bool = false
+    @State private var hespiritUserId: Int = -1
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -12,7 +19,7 @@ struct SemihollowHome: View {
             VStack{
                 HStack{
                     HStack{
-                        Image("gritr_icon")
+                        Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
                                         .resizable()
                                         .frame(width: 52,height: 52)
                                         .clipShape(Circle())
@@ -28,14 +35,18 @@ struct SemihollowHome: View {
                             Text("Hello!")
                                                     .font(.system(size: 14, weight: .regular))
                                                     .foregroundColor(.white)
-                            Text("Daniele")
+                            Text(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].aidrivenName)
                                 .font(.system(size: 16, weight: .bold))
                                                     .foregroundColor(.white)
                         }
                     }
                     Spacer()
                     Button(action: {
-                                        
+                        router.showScreen(.fullScreenCover) { _ in
+                            
+                            SoundholeMes()
+                               
+                                       }
                                     }) {
                                         Image("gritr_message")
                                             .resizable()
@@ -62,9 +73,9 @@ struct SemihollowHome: View {
                         .padding(.leading,16)
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing:26){
-                                ForEach(0..<5) {index in
+                                ForEach(erboardUsers,id: \.hykingUserId) {item in
                                     VStack(spacing:8){
-                                        Image("gritr_icon")
+                                        Image(item.strumAvatar)
                                             .resizable()
                                             .frame(width: 60, height: 60)
                                             .clipShape(Circle())
@@ -72,9 +83,17 @@ struct SemihollowHome: View {
                                                 Circle()
                                                     .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
                                             )
-                                        Text("Kalani")
+                                        Text(item.aidrivenName)
                                                                 .font(.system(size: 12, weight: .medium))
                                                                 .foregroundColor(.white)
+                                    }.onTapGesture {
+                                        router.showScreen(.fullScreenCover) { _ in
+                                            ToastHost {
+                                                SignatureTaren(naitroceUserId: item.hykingUserId, onUpdnter: {
+                                                    updaFeinmsnh()
+                                                })
+                                            }
+                                        }
                                     }
                                 }
                             }.padding(.horizontal,16)
@@ -91,12 +110,38 @@ struct SemihollowHome: View {
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(Color(red: 234/255, green: 66/255, blue: 190/255))
                                 .underline(true)
+                                .onTapGesture {
+                                    router.showScreen(.fullScreenCover) { _ in
+                                        ToastHost {
+                                            SelectorYanZou(onUpdaTranqu: {
+                                                updaFeinmsnh()
+                                            })
+                                        }
+                                    }
+                                }
                         }.padding(.horizontal,16)
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing:13){
-                            ForEach(0..<5) {index in
-                                        HeneleckRoom()
+                                ForEach(lmmutingRooms,id: \.ypickingRoomId) {item in
+                                    HeneleckRoom(minorscaRoom: item, locanckiRep: {
+                                        withAnimation{
+                                            inneranReShow = true
+                                            hespiritUserId = item.strumminUserId
+                                        }
+                                    })
                                             .frame(width: 280, height: 120)
+                                            .onTapGesture{
+                                                router.showScreen(.fullScreenCover) { _ in
+                                                    ToastHost {
+                                                        PlectrumYanTing(legatoRoom: item, onUpdaProgr: {
+                                                            lmmutingRooms = SustainStorge.shared.chromaticRooms
+                                                        }, onUpdaCmind: {
+                                                            updaFeinmsnh()
+                                                        })
+                                                    }
+                                                       
+                                                               }
+                                            }
                                 }
                             }.padding(.horizontal,16)
                         }
@@ -111,8 +156,27 @@ struct SemihollowHome: View {
                         }.padding(.horizontal,16)
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing:13){
-                            ForEach(0..<5) {index in
-                                PickupDynamic()
+                                ForEach(deadnotePosts,id: \.alternatPostId) {item in
+                                    PickupDynamic(warmthPost: item, honeampCheck: true, inpuredReort: {
+                                        withAnimation{
+                                            inneranReShow = true
+                                            hespiritUserId = item.gerstyleUserId
+                                        }
+                                        
+                                    })
+                                        .onTapGesture {
+                                            router.showScreen(.fullScreenCover) { _ in
+                                                ToastHost {
+                                                    PluckingVDetails(teturalPostId: item.alternatPostId,
+                                                                     luthierUrl: item.staccatoDiz, onUpdaEnilme: {
+                                                        updaFeinmsnh()
+                                                    }
+                                                                     
+                                                    )
+                                                }
+                                                }
+                                        }
+                                       
                                 }
                             }.padding(.horizontal,16)
                         }
@@ -121,13 +185,18 @@ struct SemihollowHome: View {
                 //滑 end
             }
             Button(action: {
-                               
+                router.showScreen(.fullScreenCover) { _ in
+                    
+                    FretwearUpload(onBarrech: {
+                        deadnotePosts = SustainStorge.shared.vibratoPosts
+                    })
+                       
+                               }
                            }) {
                                Image("gritr_add")
                                                .resizable()
                                                .frame(width: 16, height: 16)
                                    .frame(width: 48, height: 48)
-                                   
                            }
                            .background(
                                LinearGradient(
@@ -147,77 +216,141 @@ struct SemihollowHome: View {
                            .padding(.trailing,10)
             
             if CoatedShow {
-                LightgaugeChouTi(CoatedShow: $CoatedShow)
+                LightgaugeChouTi(CoatedShow: $CoatedShow, inpuLecalm: {
+                    updaFeinmsnh()
+                })
                     .transition(.move(edge: .leading))
             }
+
+        }.onAppear{
+            updaFeinmsnh()
+        }.deondeReportOverlay(isRumchaba: $inneranReShow, piroueUserId: hespiritUserId){
+           
+            updaFeinmsnh()
+            
+        }
+    }
+    func updaFeinmsnh(){
+        let ghtiBlock = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock
+       
+        
+        erboardUsers = SustainStorge.shared.reverbUsers.filter{
+            $0.hykingUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId
+            && !ghtiBlock.contains($0.hykingUserId)
+        }
+        deadnotePosts = SustainStorge.shared.vibratoPosts.filter{
+            !ghtiBlock.contains($0.gerstyleUserId)
+        }
+        
+        lmmutingRooms = SustainStorge.shared.chromaticRooms.filter{
+            !ghtiBlock.contains($0.strumminUserId)
         }
     }
 }
 
 struct PickupDynamic: View {
+    let warmthPost : AvelguitarPosts
+    @State private var mutingUser: ReverbUsers = ReverbUsers.default
+    let honeampCheck : Bool
+    let inpuredReort :() ->  Void
     var body: some View {
         ZStack{
-            Image("gritr_icon")
-                            .resizable()
-                            .frame(width: 165, height: 220)
-                            .cornerRadius(20)
-                            .frame(maxHeight: .infinity,alignment: .top)
+             
+            if  let metajazImg = UIImage(contentsOfFile: warmthPost.prebendImg) {
+                Image(uiImage: metajazImg)
+                    .resizable()
+                    .frame(width: 165, height: 220)
+                    .cornerRadius(20)
+                    .frame(maxHeight: .infinity,alignment: .top)
+            }else{
+                Image(warmthPost.prebendImg)
+                                .resizable()
+                                .frame(width: 165, height: 220)
+                                .cornerRadius(20)
+                                .frame(maxHeight: .infinity,alignment: .top)
+            }
+            
+            
             Image("gritr_report")
                             .resizable()
                             .frame(width: 20, height: 20)
                             .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
                             .padding(10)
-            
-            HStack(spacing: 7) {
-                Image("gritr_icon")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .clipShape(Circle())
+                            .onTapGesture {
+                                inpuredReort()
+                            }
+            if honeampCheck{
+                HStack(spacing: 7) {
+                    Image(mutingUser.strumAvatar)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .clipShape(Circle())
 
-                Text("Daniele")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.white)
+                    Text(mutingUser.aidrivenName)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.white)
 
-                Spacer()
+                    Spacer()
 
-                Image("gritr_like")
+                    Image(warmthPost.harmonicLikes.contains(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) ? "gritr_like_zan" : "gritr_like")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                }
+                .padding(.horizontal, 9)
+                .frame(width: 145, height: 48)
+                .background(
+                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color(red: 33/255, green: 34/255, blue: 40/255).opacity(0.6))
+                        .blur(radius: 6)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        )
+                )
+                .frame(maxHeight: .infinity, alignment: .bottom)
+            }else{
+                Image(warmthPost.harmonicLikes.contains(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) ? "gritr_like_zan" : "gritr_like")
                     .resizable()
                     .frame(width: 22, height: 22)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                    .padding(.trailing,10)
+                    .padding(.bottom,32)
             }
-            .padding(.horizontal, 9)
-            .frame(width: 145, height: 48)
-            .background(
-                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    .fill(Color(red: 33/255, green: 34/255, blue: 40/255).opacity(0.6))
-                    .blur(radius: 6)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    )
-            )
-            .frame(maxHeight: .infinity, alignment: .bottom)
+            
                             
         }.frame(width: 165,height: 244)
+            .onAppear{
+                mutingUser = SustainStorge.shared.reverbUsers.first {
+                    $0.hykingUserId == warmthPost.gerstyleUserId
+                } ?? ReverbUsers.default
+                
+            }
+            
     }
 }
 
 struct HeneleckRoom: View {
+    let minorscaRoom : VoicingRooms
+    let locanckiRep : ()-> Void
     var body: some View {
         HStack{
-            Image("gritr_icon")
+            Image(minorscaRoom.orscaleImg)
                             .resizable()
                             .frame(width: 100, height: 100)
                             .cornerRadius(15)
             VStack(alignment:.leading,spacing: 0){
                 HStack{
-                    Text("Room Title")
+                    Text(minorscaRoom.intervalName)
                                             .font(.system(size: 16, weight: .bold))
                                             .foregroundColor(.white)
                     Spacer()
                     Image("gritr_report")
                                     .resizable()
                                     .frame(width: 20, height: 20)
+                                    .onTapGesture {
+                                        locanckiRep()
+                                    }
                 }
-                Text("Come and listen to the latest songs together")
+                Text(minorscaRoom.economJies)
                                         .font(.system(size: 12, weight: .regular))
                                         .foregroundColor(.white.opacity(0.5))
                                         .padding(.top,5)
@@ -226,14 +359,14 @@ struct HeneleckRoom: View {
                     Image("gritr_eye")
                                     .resizable()
                                     .frame(width: 16, height: 16)
-                    Text("0")
+                    Text("\(minorscaRoom.hammeronLook)")
                                             .font(.system(size: 10, weight: .regular))
                                             .foregroundColor(.white.opacity(0.7))
                                             .padding(.trailing,6)
                     Image("gritr_hot")
                                     .resizable()
                                     .frame(width: 16, height: 16)
-                    Text("0")
+                    Text("\(minorscaRoom.pentatoniHot)")
                                             .font(.system(size: 10, weight: .regular))
                                             .foregroundColor(.white.opacity(0.7))
                     Spacer()

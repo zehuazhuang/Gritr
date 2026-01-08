@@ -4,7 +4,7 @@ import SwiftUI
 import SwiftfulRouting
 
 struct HeadstockInit: View {
-    @State private var baritoneCheck = false
+    @State private var baritoneCheck = true
     @Environment(\.router) var router
     var body: some View {
         
@@ -44,12 +44,7 @@ struct HeadstockInit: View {
                 .cornerRadius(60)
                 
                 Button(action: {
-                    for family in UIFont.familyNames.sorted() {
-                        print("Family: \(family)")
-                        for name in UIFont.fontNames(forFamilyName: family) {
-                            print("  Font: \(name)")
-                        }
-                    }
+                    
                 }) {
                     Text("I'm new")
                         .font(.system(size: 18, weight: .bold))
@@ -82,7 +77,7 @@ struct HeadstockInit: View {
                                     .font(.system(size: 16))
                             }
 
-                            // 文本内容
+                            
                             HStack(spacing: 0) {
                                 Text("Agree with  ")
                                     .font(.system(size: 12, weight: .regular))
@@ -91,6 +86,13 @@ struct HeadstockInit: View {
                                     .font(.system(size: 12, weight: .regular))
                                     .foregroundColor(Color(red: 234/255, green: 66/255, blue: 190/255))
                                     .underline(true)
+                                    .onTapGesture {
+                                        router.showScreen(.fullScreenCover) { _ in
+                                            ToastHost {
+                                                AlternatounView(calmwStr: "https://app.e07mmblf.link/users")
+                                            }
+                                         }
+                                    }
                                 Text(" and ")
                                     .font(.system(size: 12, weight: .regular))
                                     .foregroundColor(.white)
@@ -98,6 +100,13 @@ struct HeadstockInit: View {
                                     .font(.system(size: 12, weight: .regular))
                                     .foregroundColor(Color(red: 234/255, green: 66/255, blue: 190/255))
                                     .underline(true)
+                                    .onTapGesture {
+                                        router.showScreen(.fullScreenCover) { _ in
+                                            ToastHost {
+                                                AlternatounView(calmwStr: "https://app.e07mmblf.link/privacy")
+                                            }
+                                         }
+                                    }
                             }
                         }
                         .padding(.bottom, 35)

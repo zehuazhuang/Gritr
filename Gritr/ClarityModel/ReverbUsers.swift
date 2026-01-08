@@ -16,7 +16,7 @@ struct ReverbUsers: Codable {
         equalizerEmail:"",
         tchshiftPassword:"",
         aidrivenName: "",
-        strumAvatar:"",
+        strumAvatar:"gritr_icon",
         noisegateGood: 0,
         bridpicBlock:[],
         rpickingFollow:[],

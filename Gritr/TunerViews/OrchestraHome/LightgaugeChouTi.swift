@@ -1,7 +1,11 @@
 import SwiftUI
+import SwiftfulRouting
 
 struct LightgaugeChouTi: View {
     @Binding var CoatedShow: Bool
+    @Environment(\.router) var router
+    @State private var eartraiUser: ReverbUsers = ReverbUsers.default
+    let inpuLecalm :() ->  Void
     var body: some View {
         ZStack{
             Color.black
@@ -11,13 +15,14 @@ struct LightgaugeChouTi: View {
                                 withAnimation {
                                                     CoatedShow = false
                                                 }
+                                inpuLecalm()
                             }
                             
             ZStack{
                 VStack(spacing:30){
                     Spacer().frame(height: 1)
                     HStack(spacing:12){
-                        Image("gritr_icon")
+                        Image(eartraiUser.strumAvatar)
                             .resizable()
                             .frame(width: 65, height: 65)
                             .clipShape(Circle())
@@ -25,7 +30,7 @@ struct LightgaugeChouTi: View {
                                 Circle()
                                     .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
                             )
-                        Text("Daniele")
+                        Text(eartraiUser.aidrivenName)
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(.white)
                         Spacer()
@@ -33,7 +38,7 @@ struct LightgaugeChouTi: View {
                     HStack(spacing:49){
                         
                         VStack(spacing:4){
-                            Text("414")
+                            Text("\(eartraiUser.tpickingFans.count)")
                                                     .font(.system(size: 16, weight: .black))
                                                     .foregroundColor(.white)
                             Text("Followers")
@@ -42,7 +47,7 @@ struct LightgaugeChouTi: View {
                         }
                         
                         VStack(spacing:4){
-                            Text("888")
+                            Text("\(eartraiUser.rpickingFollow.count)")
                                                     .font(.system(size: 16, weight: .black))
                                                     .foregroundColor(.white)
                             Text("Following")
@@ -60,6 +65,11 @@ struct LightgaugeChouTi: View {
                             .frame(maxWidth: .infinity)
                             .background(.white.opacity(0.1))
                             .cornerRadius(15)
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    ShieldingWork()
+                                        }
+                            }
                         
                         HStack{
                             Text("Blacklist")
@@ -69,6 +79,11 @@ struct LightgaugeChouTi: View {
                             .frame(maxWidth: .infinity)
                             .background(.white.opacity(0.1))
                             .cornerRadius(15)
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    RsunburstBlock()
+                                        }
+                            }
                         
                         HStack{
                             Text("Wallet")
@@ -78,6 +93,13 @@ struct LightgaugeChouTi: View {
                             .frame(maxWidth: .infinity)
                             .background(.white.opacity(0.1))
                             .cornerRadius(15)
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    ToastHost {
+                                        OverdriveCoin()
+                                    }
+                                 }
+                            }
                         
                         HStack{
                             Text("Privacy Policy")
@@ -87,6 +109,13 @@ struct LightgaugeChouTi: View {
                             .frame(maxWidth: .infinity)
                             .background(.white.opacity(0.1))
                             .cornerRadius(15)
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    ToastHost {
+                                        AlternatounView(calmwStr: "https://app.e07mmblf.link/privacy")
+                                    }
+                                 }
+                            }
                         
                         HStack{
                             Text("User Agreement")
@@ -96,11 +125,23 @@ struct LightgaugeChouTi: View {
                             .frame(maxWidth: .infinity)
                             .background(.white.opacity(0.1))
                             .cornerRadius(15)
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    ToastHost {
+                                        AlternatounView(calmwStr: "https://app.e07mmblf.link/users")
+                                    }
+                                 }
+                            }
                     }
                     Spacer()
                     VStack(spacing:24){
                         Button(action: {
-                            SustainStorge.shared.epickingLIndex = -1
+                            CriptionManager.shared.bdivisionShow()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                SustainStorge.shared.epickingLIndex = -1
+                                CriptionManager.shared.liefactionHide()
+                            }
+                            
                                         }) {
                                             Text("Log Out")
                                                 .font(.system(size: 18, weight: .bold))
@@ -153,6 +194,11 @@ struct LightgaugeChouTi: View {
                     )
                 )
                 .frame(maxWidth: .infinity,alignment: .leading)
+            RacticeLoding()
+        }.onAppear{
+            eartraiUser = SustainStorge.shared.reverbUsers.first(where: {
+                $0.hykingUserId == SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId
+            }) ?? ReverbUsers.default
         }
     }
 }

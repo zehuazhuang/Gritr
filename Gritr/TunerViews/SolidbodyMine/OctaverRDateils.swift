@@ -1,11 +1,24 @@
 
 
 import SwiftUI
+import SwiftfulRouting
 
 struct OctaverRDateils: View {
     let columns = [
         GridItem(.adaptive(minimum: 165), spacing: 13)
     ]
+    let jearitieReport : [String] = [
+        "Pornographic \ncontent",
+        "Infringement",
+        "Discriminatory \nremarks",
+        "Spreading false \ncontent",
+        "Harass others",
+        "Cyber violence",
+        "Fraudulent \nbehavior",
+        "Others",
+    ]
+    @Environment(\.router) var router
+    @State private var panskirReport: String = ""
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -15,7 +28,7 @@ struct OctaverRDateils: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -40,9 +53,9 @@ struct OctaverRDateils: View {
                     VStack{
               
                         LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(0..<10) {index in
+                            ForEach(jearitieReport,id: \.self) {item in
                                     ZStack{
-                                        Text("Pornographic \ncontent")
+                                        Text(item)
                                         
                                                                 .font(.system(size: 16, weight: .medium))
                                                                 .foregroundColor(.white)
@@ -51,13 +64,26 @@ struct OctaverRDateils: View {
                                     .frame(width: 165, height: 76)
                                     .frame(maxWidth: .infinity)
                                     .background(
+                                        panskirReport == item ? Color(red: 234/255, green: 66/255, blue: 190/255) :
                                         Color.white.opacity(0.1)
                                     )
                                     .cornerRadius(20)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            panskirReport = item
+                                        }
+                                    }
                                 }
                         }
                         Spacer()
                         Button(action: {
+                            CriptionManager.shared.bdivisionShow()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                CriptionManager.shared.liefactionHide()
+                                router.dismissScreen()
+                                ToastManager.shared.show("Thank you for your feedback.")
+                            }
                                            
                                        }) {
                                            Text("Submit")
@@ -82,6 +108,7 @@ struct OctaverRDateils: View {
                     }
                
             }.padding(.horizontal,16)
+            RacticeLoding()
         }
     }
 }

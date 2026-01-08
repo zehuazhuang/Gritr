@@ -1,6 +1,9 @@
 import SwiftUI
+import SwiftfulRouting
 
 struct CabinetRecharge: View {
+    @Binding var steelbarShow: Bool
+    @Environment(\.router) var router
     var body: some View {
         ZStack{
             Color.black
@@ -30,7 +33,7 @@ struct CabinetRecharge: View {
                     Spacer().frame(height: 34)
                     HStack(spacing:15){
                         Button(action: {
-                                            
+                            steelbarShow = false
                                         }) {
                                             Text("Cancel")
                                                 .font(.system(size: 18, weight: .bold))
@@ -42,9 +45,18 @@ struct CabinetRecharge: View {
                                         )
                                         .cornerRadius(60)
                         Button(action: {
-                                            
+                            steelbarShow = false
+                            
+                           
+                                    router.showScreen(.fullScreenCover) { _ in
+                                        ToastHost {
+                                            OverdriveCoin()
+                                        }
+                                    }
+                            
+                           
                                         }) {
-                                            Text("Sure")
+                                            Text("Recharge")
                                                 .font(.system(size: 18, weight: .bold))
                                                 .foregroundColor(.black)
                                                 .frame(width: 140, height: 50)

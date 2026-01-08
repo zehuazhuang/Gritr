@@ -2,11 +2,14 @@
 
 
 import SwiftUI
+import SwiftfulRouting
 
 struct RsunburstBlock: View {
     let columns = [
         GridItem(.adaptive(minimum: 165), spacing: 13)
     ]
+    @Environment(\.router) var router
+    @State private var oulponUsers: [ReverbUsers] = []
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -16,7 +19,7 @@ struct RsunburstBlock: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -40,10 +43,10 @@ struct RsunburstBlock: View {
                
                 ScrollView{
                     VStack(spacing:30){
-                        ForEach(0..<2){index in
+                        ForEach(oulponUsers,id: \.hykingUserId){item in
                           
                             HStack(spacing:15){
-                                    Image("gritr_icon")
+                                Image(item.strumAvatar)
                                         .resizable()
                                         .frame(width: 55, height: 55)
                                         .clipShape(Circle())
@@ -52,7 +55,7 @@ struct RsunburstBlock: View {
                                                 .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
                                         )
                                    
-                                        Text("Username")
+                                Text(item.aidrivenName)
                                             .font(.system(size: 16, weight: .bold))
                                             .foregroundColor(.white)
                                        
@@ -67,12 +70,34 @@ struct RsunburstBlock: View {
                                         RoundedRectangle(cornerRadius: 60)
                                             .fill(Color(red: 234/255, green: 66/255, blue: 190/255))
                                     )
+                                    .onTapGesture {
+                                        updHarmoniRemo(cspireUserId: item.hykingUserId)
+                                        
+                                        oulponUsers = SustainStorge.shared.reverbUsers.filter{
+                                            SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock.contains($0.hykingUserId)
+                                        }
+                                    }
                                 }
                         }
                     }
                 }
                
             }.padding(.horizontal,16)
+        }.onAppear{
+            oulponUsers = SustainStorge.shared.reverbUsers.filter{
+                SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock.contains($0.hykingUserId)
+            }
         }
+    }
+    
+    func updHarmoniRemo( cspireUserId : Int ){
+        
+           
+           SustainStorge.shared.updaNaturalUser(by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) { user in
+              
+               user.bridpicBlock.removeAll { item in
+                   item == cspireUserId
+               }
+           }
     }
 }

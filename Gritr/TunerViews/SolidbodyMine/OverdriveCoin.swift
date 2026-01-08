@@ -1,10 +1,77 @@
 import SwiftUI
+import SwiftfulRouting
+
+struct phragmCoin: Identifiable {
+    let id: String
+    let latencyDoub: Double
+    let eolishrNum: Int
+}
 
 struct OverdriveCoin: View {
     let columns = [
         GridItem(.adaptive(minimum: 165), spacing: 13)
     ]
+    
+    let cmixingkCoins: [phragmCoin] = [
+        phragmCoin(
+            id: "lvbsvhxcgcrvesor",
+            latencyDoub: 0.99,
+            eolishrNum: 400
+        ),
+        phragmCoin(
+            id: "1",
+            latencyDoub: 1.99,
+            eolishrNum: 800
+        ),
+        phragmCoin(
+            id: "dxismgcwewhrtezo",
+            latencyDoub: 4.99,
+            eolishrNum: 2450
+        ),
+        phragmCoin(
+            id: "2",
+            latencyDoub: 7.99,
+            eolishrNum: 3950
+        ),
+        phragmCoin(
+            id: "3",
+            latencyDoub: 9.99,
+            eolishrNum: 4900
+        ),
+        phragmCoin(
+            id: "4",
+            latencyDoub: 19.99,
+            eolishrNum: 9800
+        ),
+        phragmCoin(
+            id: "5",
+            latencyDoub: 29.99,
+            eolishrNum: 14900
+        ),
+        phragmCoin(
+            id: "6",
+            latencyDoub: 49.99,
+            eolishrNum: 24500
+        ),
+        phragmCoin(
+            id: "7",
+            latencyDoub: 79.99,
+            eolishrNum: 39500
+        ),
+        phragmCoin(
+            id: "8",
+            latencyDoub: 99.99,
+            eolishrNum: 49000
+        ),
+        
+    ]
+    
+    @Environment(\.router) var router
+    @StateObject private var iapManager = LechordreCoin.shared
+    let productIDs: Set<String> = ["lvbsvhxcgcrvesor", "dxismgcwewhrtezo"]
+    
     var body: some View {
+        
         ZStack{
             Image("gritr_backg")
                             .resizable()
@@ -13,7 +80,7 @@ struct OverdriveCoin: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -39,7 +106,7 @@ struct OverdriveCoin: View {
                         Image("gritr_dazuan")
                                         .resizable()
                                         .frame(width: 135, height: 135)
-                        Text("0")
+                        Text("\(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].noisegateGood)")
                                                 .font(.system(size: 28, weight: .bold))
                                                 .foregroundColor(.white)
                                                 .padding(.top,8)
@@ -47,17 +114,17 @@ struct OverdriveCoin: View {
                                                 .font(.system(size: 16, weight: .regular))
                                                 .foregroundColor(.white.opacity(0.5))
                         LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(0..<10) {index in
+                            ForEach(cmixingkCoins,id: \.id) {item in
                                     ZStack{
                                         HStack{
                                             Image("gritr_dazuan")
                                                             .resizable()
                                                             .frame(width: 40, height: 40)
                                             VStack{
-                                                Text("400")
+                                                Text("\(item.eolishrNum)")
                                                                         .font(.system(size: 18, weight: .bold))
                                                                         .foregroundColor(.white)
-                                                Text("$0.99")
+                                                Text("$\(String(format: "%.2f", item.latencyDoub))")
                                                                         .font(.system(size: 12, weight: .regular))
                                                                         .foregroundColor(.white.opacity(0.5))
                                             }
@@ -69,11 +136,20 @@ struct OverdriveCoin: View {
                                         Color.white.opacity(0.1)
                                     )
                                     .cornerRadius(20)
+                                    .onTapGesture {
+                                        Task {
+                                            iapManager.cordingNum = item.eolishrNum
+                                            await iapManager.ingheigPur(productID: item.id)
+                                        }
+                                    }
                                 }
                         }
                     }
                 }
             }.padding(.horizontal,16)
+            RacticeLoding()
+        }.task {
+            await iapManager.setup(productIDs: productIDs)
         }
     }
 }
