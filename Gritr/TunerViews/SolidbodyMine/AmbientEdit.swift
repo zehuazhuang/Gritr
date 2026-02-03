@@ -3,13 +3,19 @@
 
 
 import SwiftUI
+import SwiftfulRouting
+import _PhotosUI_SwiftUI
 
 struct AmbientEdit: View {
-    @State private var picpokName: String = ""
+    @State private var picpokName: String = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].aidrivenName
     @FocusState private var knowitchbField: Field?
     enum Field: Hashable {
         case picpokName
     }
+    @Environment(\.router) var router
+    @State private var avatarImage: UIImage?      // 存储选中的头像
+        @State private var showImagePicker = false    // 控制是否显示相册
+        @State private var selectedItem: PhotosPickerItem? // PHPicker 选中的 item
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -19,7 +25,7 @@ struct AmbientEdit: View {
             VStack{
                 HStack{
                     Button(action: {
-                                        
+                        router.dismissScreen()
                                     }) {
                                         Image("gritr_back")
                                             .resizable()
@@ -44,14 +50,34 @@ struct AmbientEdit: View {
                 VStack(spacing:16){
                         Spacer().frame(height: 30)
                         ZStack(alignment:.bottomTrailing){
-                            Image("gritr_icon")
-                                .resizable()
-                                .frame(width: 115, height: 115)
-                                .clipShape(Circle())
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
-                                )
+                            Group {
+                                                      if let avatarImage {
+                                                          Image(uiImage: avatarImage)
+                                                              .resizable()
+                                                      } else {
+                                                          if let rdinatImg = UIImage(contentsOfFile: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar) {
+                                                                  Image(uiImage: rdinatImg)
+                                                                      .resizable()
+                                                                     
+                                                              } else {
+                                                                  Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
+                                                                      .resizable()
+                                                                     
+                                                              }
+                                                          
+//                                                          Image()
+//                                                              .resizable()
+                                                      }
+                                                  }
+                                                  .frame(width: 115, height: 115)
+                                                  .clipShape(Circle())
+                                                  .overlay(
+                                                      Circle()
+                                                          .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
+                                                  )
+                                                  .onTapGesture {
+                                                      showImagePicker = true
+                                                  }
                             Image("gritr_shanga")
                                 .resizable()
                                 .frame(width: 34, height: 34)
@@ -84,7 +110,26 @@ struct AmbientEdit: View {
                 
                         Spacer()
                         Button(action: {
-                                           
+                           
+                            
+                            SustainStorge.shared.updaNaturalUser(by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) { user in
+                                user.aidrivenName = picpokName
+                                if let avatarImage {
+                                   
+                                    let timeStamp = Int(Date().timeIntervalSince1970)
+                                    let fileName = "avatar_\(timeStamp).jpg"
+                                    if let savedURL = saveImageToLocal(avatarImage, fileName: fileName) {
+                                        user.strumAvatar = savedURL.path
+                                        print("头像路径：\(user.strumAvatar)")
+                                    }
+                                    
+                                 
+                                }
+                                
+                            }
+                            
+                            
+                            
                                        }) {
                                            Text("Save")
                                                .font(.system(size: 18, weight: .bold))
@@ -105,11 +150,42 @@ struct AmbientEdit: View {
                                            )
                                        )
                                        .cornerRadius(60)
+                                       .padding(.bottom,6)
                     }
                
             }.padding(.horizontal,16)
         }.onTapGesture {
             knowitchbField = nil
+        }.photosPicker(isPresented: $showImagePicker, selection: $selectedItem, matching: .images)
+            .onChange(of: selectedItem) { newItem in
+                if let newItem {
+                    Task {
+                        if let data = try? await newItem.loadTransferable(type: Data.self),
+                           let uiImage = UIImage(data: data) {
+                            avatarImage = uiImage
+                        }
+                    }
+                }
+            }
+    }
+    func saveImageToLocal(_ image: UIImage, fileName: String) -> URL? {
+        // 获取文档目录
+        guard let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        
+        let fileURL = documents.appendingPathComponent(fileName)
+        
+        // 将 UIImage 转成 JPEG 数据
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+        
+        do {
+            try data.write(to: fileURL)
+            print("图片已保存到：\(fileURL)")
+            return fileURL
+        } catch {
+            print("保存图片失败：\(error)")
+            return nil
         }
     }
 }

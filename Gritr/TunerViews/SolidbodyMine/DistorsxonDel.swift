@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct DistorsxonDel: View {
+    @Binding var tasivegeShow: Bool
     var body: some View {
         ZStack{
             Color.black
                             .opacity(0.45)
                             .ignoresSafeArea()
+                            .onTapGesture {
+                                tasivegeShow = false
+                            }
             ZStack{
                 Image("gritr_jianbm").resizable()
                 Image("gritr_jinggaored")
@@ -30,7 +34,7 @@ struct DistorsxonDel: View {
                     Spacer().frame(height: 34)
                     HStack(spacing:15){
                         Button(action: {
-                                            
+                            tasivegeShow = false
                                         }) {
                                             Text("Cancel")
                                                 .font(.system(size: 18, weight: .bold))
@@ -42,7 +46,13 @@ struct DistorsxonDel: View {
                                         )
                                         .cornerRadius(60)
                         Button(action: {
-                                            
+                            CriptionManager.shared.bdivisionShow()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                
+                                SustainStorge.shared.deletEmiopinesUser(userId: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId)
+                                CriptionManager.shared.liefactionHide()
+                                SustainStorge.shared.epickingLIndex = -1
+                            }
                                         }) {
                                             Text("Sure")
                                                 .font(.system(size: 18, weight: .bold))

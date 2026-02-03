@@ -48,8 +48,8 @@ class SustainStorge: ObservableObject {
             reverbUsers = [
                 ReverbUsers(
                     hykingUserId: 1,
-                    equalizerEmail: "qwe",
-                    tchshiftPassword: "123",
+                    equalizerEmail: "murray@gmail.com",
+                    tchshiftPassword: "123456",
                     aidrivenName: "Murray",
                     strumAvatar: "gritr_yus1",
                     noisegateGood: 0,
@@ -74,6 +74,17 @@ class SustainStorge: ObservableObject {
                     tchshiftPassword: "",
                     aidrivenName: "Baker",
                     strumAvatar: "gritr_yus3",
+                    noisegateGood: 0,
+                    bridpicBlock: [],
+                    rpickingFollow: [],
+                    tpickingFans: []
+                ),
+                ReverbUsers(
+                    hykingUserId: 3261,
+                    equalizerEmail: "",
+                    tchshiftPassword: "",
+                    aidrivenName: "Visitors5163",
+                    strumAvatar: "gritr_icon",
                     noisegateGood: 0,
                     bridpicBlock: [],
                     rpickingFollow: [],
@@ -112,6 +123,7 @@ class SustainStorge: ObservableObject {
                     rpickingFollow: [],
                     tpickingFans: []
                 )
+                
                 
             ]
             saveAttackUser()
@@ -234,7 +246,7 @@ class SustainStorge: ObservableObject {
     }
     
     // MARK: - 用户操作
-    func addUser(_ user: ReverbUsers) {
+    func addMetronomUser(_ user: ReverbUsers) {
         reverbUsers.append(user)
         saveAttackUser()
     }
@@ -489,5 +501,67 @@ class SustainStorge: ObservableObject {
             flangerInfo = decoded
         }
     }
+    //del
+    func deletEmiopinesUser(userId: Int) {
 
+        if(userId == 3261){
+            let gnalcNum = Int.random(in: 1000...9999)
+            updaNaturalUser(by: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId) { user in
+                user.noisegateGood = 0
+                user.strumAvatar = "gritr_icon"
+                user.aidrivenName = "Visitors\(gnalcNum)"
+                user.tpickingFans = []
+                user.rpickingFollow = []
+                user.bridpicBlock = []
+            }
+        }else{
+            reverbUsers.removeAll { $0.hykingUserId == userId }
+        }
+        
+
+        
+        for index in reverbUsers.indices {
+            reverbUsers[index].rpickingFollow.removeAll { $0 == userId }
+            reverbUsers[index].tpickingFans.removeAll { $0 == userId }
+            reverbUsers[index].bridpicBlock.removeAll { $0 == userId }
+        }
+
+        
+        vibratoPosts.removeAll { $0.gerstyleUserId == userId }
+
+        
+        for index in vibratoPosts.indices {
+            vibratoPosts[index].harmonicLikes.removeAll { $0 == userId }
+        }
+
+        
+        acompodComments.removeAll { $0.pmeteroUserId == userId }
+
+        
+        let removedChatIds = tunbackChats
+            .filter { $0.loseishUsers.contains(userId) }
+            .map { $0.fbeworpChatId }
+
+        tunbackChats.removeAll { $0.loseishUsers.contains(userId) }
+
+        
+        flangerInfo.removeAll {
+            removedChatIds.contains($0.oxenuatoChatId)
+            || $0.grgemoUserId == userId
+        }
+
+        
+        if epickingLIndex != -1,
+           epickingLIndex < reverbUsers.count,
+           reverbUsers[epickingLIndex].hykingUserId == userId {
+            epickingLIndex = -1
+        }
+
+        
+        saveAttackUser()
+        saveStrumPosts()
+        saveResonantComments()
+        savePalmuteChats()
+        saveTempreMessages()
+    }
 }

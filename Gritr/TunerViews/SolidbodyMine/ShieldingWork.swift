@@ -3,8 +3,9 @@ import SwiftUI
 import SwiftfulRouting
 
 struct ShieldingWork: View {
-    let columns = [
-        GridItem(.adaptive(minimum: 165), spacing: 13)
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 13),
+        GridItem(.flexible(), spacing: 13)
     ]
     @State private var adncaletPosts: [AvelguitarPosts] = []
     @Environment(\.router) var router

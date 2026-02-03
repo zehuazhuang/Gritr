@@ -57,8 +57,16 @@ struct MahoganyChat: View {
                                         .white.opacity(0.1)
                                     )
                                     .clipShape(Circle())
-                    Image(drcisebeUser.strumAvatar)
-                                    .resizable()
+                    Group {
+                        if let cisbeatImg = UIImage(contentsOfFile: drcisebeUser.strumAvatar) {
+                            Image(uiImage: cisbeatImg)
+                                .resizable()
+                        } else {
+                            Image(drcisebeUser.strumAvatar)
+                                            .resizable()
+                        }
+                    }
+                    
                                     .frame(width: 30, height: 30)
                                     .clipShape(Circle())
                                     .padding(.leading,6)
@@ -84,8 +92,16 @@ struct MahoganyChat: View {
                                 
                                 HStack {
                                     if isCurrentUser { Spacer() } else {
-                                        Image(drcisebeUser.strumAvatar)
-                                            .resizable()
+                                        Group {
+                                            if let cisbeatImg = UIImage(contentsOfFile: drcisebeUser.strumAvatar) {
+                                                Image(uiImage: cisbeatImg)
+                                                    .resizable()
+                                            } else {
+                                                Image(drcisebeUser.strumAvatar)
+                                                    .resizable()
+                                            }
+                                        }
+                                        
                                             .frame(width: 40, height: 40)
                                             .clipShape(Circle())
                                     }
@@ -121,8 +137,16 @@ struct MahoganyChat: View {
                                     
                                     
                                     if isCurrentUser {
-                                        Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
-                                            .resizable()
+                                        Group {
+                                            if let cisbeatImg = UIImage(contentsOfFile: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar) {
+                                                Image(uiImage: cisbeatImg)
+                                                    .resizable()
+                                            } else {
+                                                Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
+                                                    .resizable()
+                                            }
+                                        }
+                                        
                                             .frame(width: 40, height: 40)
                                             .clipShape(Circle())
                                     } else { Spacer() }

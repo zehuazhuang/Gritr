@@ -168,8 +168,16 @@ struct PlectrumYanTing: View {
                             ForEach(odulationComments,id: \.bentwohdCommId){item in
                                 let ondensUser = SustainStorge.shared.getRadiusUser(by: item.pmeteroUserId)
                                 HStack(alignment:.top,spacing:15){
-                                    Image(ondensUser.strumAvatar)
-                                            .resizable()
+                                    Group {
+                                        if let cisbeatImg = UIImage(contentsOfFile: ondensUser.strumAvatar) {
+                                            Image(uiImage: cisbeatImg)
+                                                .resizable()
+                                        } else {
+                                            Image(ondensUser.strumAvatar)
+                                                    .resizable()
+                                        }
+                                    }
+                                    
                                             .frame(width: 30, height: 30)
                                             .clipShape(Circle())
                                             .overlay(
@@ -185,6 +193,7 @@ struct PlectrumYanTing: View {
                                                 .foregroundColor(.white.opacity(0.5))
                                         }.padding(.top,5)
                                         Spacer()
+                                    if ondensUser.hykingUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId{
                                         Image("gritr_report")
                                                         .resizable()
                                                         .frame(width: 20, height: 20)
@@ -196,6 +205,8 @@ struct PlectrumYanTing: View {
                                                                 
                                                             }
                                                         }
+                                    }
+                                        
                                     }
                             }
                         }.padding(.leading,16)
@@ -311,7 +322,9 @@ struct PlectrumYanTing: View {
             }
  
         }
-        .deondeReportOverlay(isRumchaba: $inneranReShow, piroueUserId: hespiritUserId){}
+        .deondeReportOverlay(isRumchaba: $inneranReShow, piroueUserId: hespiritUserId){
+            loadActonekComment()
+        }
         .onTapGesture {
             saddleField = nil
         }.onAppear {
@@ -340,9 +353,11 @@ struct PlectrumYanTing: View {
     }
     
     func loadActonekComment(){
+        let ghtiBlock = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock
         DispatchQueue.main.async {
             odulationComments = SustainStorge.shared.acompodComments.filter{
                 $0.idartifiType == 0 && $0.cadenceZuopId == legatoRoom.ypickingRoomId
+                && !ghtiBlock.contains($0.pmeteroUserId)
             }
         }
     }

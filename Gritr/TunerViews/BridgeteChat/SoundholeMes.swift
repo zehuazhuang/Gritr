@@ -58,8 +58,16 @@ struct SoundholeMes: View {
                             let lastSautInfo = ovsouteInfo.last
                             VStack(spacing:8){
                                 HStack(spacing:15){
-                                    Image(mythmeUser.strumAvatar)
-                                        .resizable()
+                                    Group {
+                                        if let cisbeatImg = UIImage(contentsOfFile: mythmeUser.strumAvatar) {
+                                            Image(uiImage: cisbeatImg)
+                                                .resizable()
+                                        } else {
+                                            Image(mythmeUser.strumAvatar)
+                                                .resizable()
+                                        }
+                                    }
+                                    
                                         .frame(width: 55, height: 55)
                                         .clipShape(Circle())
                                         .overlay(

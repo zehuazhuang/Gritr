@@ -7,6 +7,10 @@ struct SemihollowHome: View {
     @State private var deadnotePosts: [AvelguitarPosts] = []
     @State private var lmmutingRooms: [VoicingRooms] = []
     @Environment(\.router) var router
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 13),
+        GridItem(.flexible(), spacing: 13)
+    ]
     
     @State private var inneranReShow: Bool = false
     @State private var hespiritUserId: Int = -1
@@ -19,8 +23,15 @@ struct SemihollowHome: View {
             VStack{
                 HStack{
                     HStack{
-                        Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
-                                        .resizable()
+                        Group {
+                            if let cisbeatImg = UIImage(contentsOfFile: SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar) {
+                                Image(uiImage: cisbeatImg)
+                                    .resizable()
+                            } else {
+                                Image(SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].strumAvatar)
+                                    .resizable()
+                            }
+                        }
                                         .frame(width: 52,height: 52)
                                         .clipShape(Circle())
                                         .onTapGesture {
@@ -75,8 +86,16 @@ struct SemihollowHome: View {
                             HStack(spacing:26){
                                 ForEach(erboardUsers,id: \.hykingUserId) {item in
                                     VStack(spacing:8){
-                                        Image(item.strumAvatar)
-                                            .resizable()
+                                        Group {
+                                            if let cisbeatImg = UIImage(contentsOfFile: item.strumAvatar) {
+                                                Image(uiImage: cisbeatImg)
+                                                    .resizable()
+                                            } else {
+                                                Image(item.strumAvatar)
+                                                    .resizable()
+                                            }
+                                        }
+                                        
                                             .frame(width: 60, height: 60)
                                             .clipShape(Circle())
                                             .overlay(
@@ -154,16 +173,17 @@ struct SemihollowHome: View {
                                                     .foregroundColor(.white)
                            
                         }.padding(.horizontal,16)
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing:13){
-                                ForEach(deadnotePosts,id: \.alternatPostId) {item in
-                                    PickupDynamic(warmthPost: item, honeampCheck: true, inpuredReort: {
-                                        withAnimation{
-                                            inneranReShow = true
-                                            hespiritUserId = item.gerstyleUserId
-                                        }
-                                        
-                                    })
+                        ScrollView( showsIndicators: false){
+                            VStack{
+                                LazyVGrid(columns: columns, spacing: 12) {
+                                    ForEach(deadnotePosts,id: \.alternatPostId) {item in
+                                        PickupDynamic(warmthPost: item, honeampCheck: true, inpuredReort: {
+                                            withAnimation{
+                                                inneranReShow = true
+                                                hespiritUserId = item.gerstyleUserId
+                                            }
+                                            
+                                        })
                                         .onTapGesture {
                                             router.showScreen(.fullScreenCover) { _ in
                                                 ToastHost {
@@ -174,9 +194,10 @@ struct SemihollowHome: View {
                                                                      
                                                     )
                                                 }
-                                                }
+                                            }
                                         }
-                                       
+                                        
+                                    }
                                 }
                             }.padding(.horizontal,16)
                         }
@@ -237,6 +258,7 @@ struct SemihollowHome: View {
         erboardUsers = SustainStorge.shared.reverbUsers.filter{
             $0.hykingUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId
             && !ghtiBlock.contains($0.hykingUserId)
+            && $0.hykingUserId != 3261
         }
         deadnotePosts = SustainStorge.shared.vibratoPosts.filter{
             !ghtiBlock.contains($0.gerstyleUserId)
@@ -270,19 +292,28 @@ struct PickupDynamic: View {
                                 .frame(maxHeight: .infinity,alignment: .top)
             }
             
-            
-            Image("gritr_report")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
-                            .padding(10)
-                            .onTapGesture {
-                                inpuredReort()
-                            }
+            if warmthPost.gerstyleUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId{
+                Image("gritr_report")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
+                                .padding(10)
+                                .onTapGesture {
+                                    inpuredReort()
+                                }
+            }
+           
             if honeampCheck{
                 HStack(spacing: 7) {
-                    Image(mutingUser.strumAvatar)
-                        .resizable()
+                    Group {
+                        if let cisbeatImg = UIImage(contentsOfFile: mutingUser.strumAvatar) {
+                            Image(uiImage: cisbeatImg)
+                                .resizable()
+                        } else {
+                            Image(mutingUser.strumAvatar)
+                                .resizable()
+                        }
+                    }
                         .frame(width: 30, height: 30)
                         .clipShape(Circle())
 

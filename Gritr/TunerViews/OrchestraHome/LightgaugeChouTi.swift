@@ -6,6 +6,7 @@ struct LightgaugeChouTi: View {
     @Environment(\.router) var router
     @State private var eartraiUser: ReverbUsers = ReverbUsers.default
     let inpuLecalm :() ->  Void
+    @State private var crunchgShow: Bool = false
     var body: some View {
         ZStack{
             Color.black
@@ -22,14 +23,28 @@ struct LightgaugeChouTi: View {
                 VStack(spacing:30){
                     Spacer().frame(height: 1)
                     HStack(spacing:12){
-                        Image(eartraiUser.strumAvatar)
-                            .resizable()
+                        Group {
+                            if let cisbeatImg = UIImage(contentsOfFile: eartraiUser.strumAvatar) {
+                                Image(uiImage: cisbeatImg)
+                                    .resizable()
+                            } else {
+                                Image(eartraiUser.strumAvatar)
+                                    .resizable()
+                            }
+                        }
                             .frame(width: 65, height: 65)
                             .clipShape(Circle())
                             .overlay(
                                 Circle()
                                     .stroke(Color(red: 234/255, green: 66/255, blue: 190/255), lineWidth: 2)
                             )
+                            .onTapGesture {
+                                router.showScreen(.fullScreenCover) { _ in
+                                    ToastHost {
+                                        AmbientEdit()
+                                    }
+                                 }
+                            }
                         Text(eartraiUser.aidrivenName)
                                                 .font(.system(size: 20, weight: .bold))
                                                 .foregroundColor(.white)
@@ -163,7 +178,9 @@ struct LightgaugeChouTi: View {
                                         )
                                         .cornerRadius(60)
                         Button(action: {
-                                            
+                            withAnimation{
+                                crunchgShow = true
+                            }
                                         }) {
                                             Text("Delete Account")
                                                 .font(.system(size: 18, weight: .bold))
@@ -194,7 +211,13 @@ struct LightgaugeChouTi: View {
                     )
                 )
                 .frame(maxWidth: .infinity,alignment: .leading)
+            if crunchgShow {
+                DistorsxonDel(tasivegeShow: $crunchgShow)
+            }
+            
             RacticeLoding()
+            
+            
         }.onAppear{
             eartraiUser = SustainStorge.shared.reverbUsers.first(where: {
                 $0.hykingUserId == SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId

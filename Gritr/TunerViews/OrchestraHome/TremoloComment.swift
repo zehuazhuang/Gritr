@@ -40,8 +40,16 @@ struct TremoloComment: View {
                             ForEach(sktopampComments,id: \.bentwohdCommId){item in
                                 let roundinUser = SustainStorge.shared.getRadiusUser(by: item.pmeteroUserId)
                                 HStack(alignment:.top,spacing:15){
-                                    Image(roundinUser.strumAvatar)
-                                            .resizable()
+                                    Group {
+                                        if let cisbeatImg = UIImage(contentsOfFile: roundinUser.strumAvatar) {
+                                            Image(uiImage: cisbeatImg)
+                                                .resizable()
+                                        } else {
+                                            Image(roundinUser.strumAvatar)
+                                                    .resizable()
+                                        }
+                                    }
+                                    
                                             .frame(width: 30, height: 30)
                                             .clipShape(Circle())
                                             .overlay(
@@ -57,6 +65,7 @@ struct TremoloComment: View {
                                                 .foregroundColor(.white.opacity(0.5))
                                         }.padding(.top,5)
                                         Spacer()
+                                    if item.pmeteroUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId{
                                         Image("gritr_report")
                                                         .resizable()
                                                         .frame(width: 20, height: 20)
@@ -65,6 +74,8 @@ struct TremoloComment: View {
                                                             inneranReShow = true
                                                             piroueUserId = item.pmeteroUserId
                                                         }
+                                    }
+                                       
                                     }
                             }
                         }
@@ -123,8 +134,10 @@ struct TremoloComment: View {
        
     }
     func loadSignalnoiseComment(){
+        let ghtiBlock = SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].bridpicBlock
         sktopampComments = SustainStorge.shared.acompodComments.filter{
             $0.idartifiType == 1 && $0.cadenceZuopId == tedmoderPostId
+            && !ghtiBlock.contains($0.pmeteroUserId)
         }
     }
 }

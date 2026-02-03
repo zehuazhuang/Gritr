@@ -14,52 +14,52 @@ struct OverdriveCoin: View {
     
     let cmixingkCoins: [phragmCoin] = [
         phragmCoin(
-            id: "lvbsvhxcgcrvesor",
+            id: "ypshgwjbbmxqkkwp",
             latencyDoub: 0.99,
             eolishrNum: 400
         ),
         phragmCoin(
-            id: "1",
+            id: "skzebqeqycrneyoh",
             latencyDoub: 1.99,
             eolishrNum: 800
         ),
         phragmCoin(
-            id: "dxismgcwewhrtezo",
+            id: "uonzbchradoshmja",
             latencyDoub: 4.99,
             eolishrNum: 2450
         ),
         phragmCoin(
-            id: "2",
+            id: "qwrjkmtnxpdaflvi",
             latencyDoub: 7.99,
             eolishrNum: 3950
         ),
         phragmCoin(
-            id: "3",
+            id: "tzhtcvmfqdtdmygx",
             latencyDoub: 9.99,
             eolishrNum: 4900
         ),
         phragmCoin(
-            id: "4",
+            id: "zyowzdcltpeeqibu",
             latencyDoub: 19.99,
             eolishrNum: 9800
         ),
         phragmCoin(
-            id: "5",
+            id: "tknfwrpxqmdjlais",
             latencyDoub: 29.99,
             eolishrNum: 14900
         ),
         phragmCoin(
-            id: "6",
+            id: "dihlavcqdhnzhxwv",
             latencyDoub: 49.99,
             eolishrNum: 24500
         ),
         phragmCoin(
-            id: "7",
+            id: "wjkqtnpxrfmildav",
             latencyDoub: 79.99,
             eolishrNum: 39500
         ),
         phragmCoin(
-            id: "8",
+            id: "twfjkkrnxpwqdmti",
             latencyDoub: 99.99,
             eolishrNum: 49000
         ),

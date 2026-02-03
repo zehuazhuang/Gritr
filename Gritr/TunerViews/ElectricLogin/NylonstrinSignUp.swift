@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftfulRouting
 
 struct NylonstrinSignUp: View {
     @State private var cutawayEmail: String = ""
@@ -9,6 +10,7 @@ struct NylonstrinSignUp: View {
         case cutawayEmail, etboardPassword, adnoughtPassword
     }
     let singlecoiType : String
+    @Environment(\.router) var router
     var body: some View {
         ZStack{
             Image("gritr_backg")
@@ -19,7 +21,7 @@ struct NylonstrinSignUp: View {
                 VStack{
                     HStack{
                         Button(action: {
-                                            
+                            router.dismissScreen()
                                         }) {
                                             Image("gritr_back")
                                                 .resizable()
@@ -111,6 +113,48 @@ struct NylonstrinSignUp: View {
                             
                             Spacer().frame(height: 80)
                             Button(action: {
+                                
+                                
+                                if(cutawayEmail != "" && etboardPassword != "" && adnoughtPassword != ""){
+                                    if(singlecoiType == "1"){
+                                        
+                                        CriptionManager.shared.bdivisionShow()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                            CriptionManager.shared.liefactionHide()
+                                            let gigbagUid = SustainStorge.shared.reverbUsers.count+1
+                                            SustainStorge.shared.addMetronomUser(
+                                                ReverbUsers(
+                                                    hykingUserId: gigbagUid,
+                                                    equalizerEmail: cutawayEmail,
+                                                    tchshiftPassword: etboardPassword,
+                                                    aidrivenName: "User\(gigbagUid)",
+                                                    strumAvatar: "gritr_icon",
+                                                    noisegateGood: 0,
+                                                    bridpicBlock: [],
+                                                    rpickingFollow: [],
+                                                    tpickingFans: [])
+                                            )
+                                            
+                                            if let index = SustainStorge.shared.reverbUsers.firstIndex(
+                                                where: { $0.hykingUserId == gigbagUid }
+                                            ) {
+                                                
+                                                
+                                                SustainStorge.shared.epickingLIndex = index
+                                                router.dismissScreen()
+                                                
+                                            }else{
+                                                
+                                            }
+                                        }
+                                        
+                                    }
+                                }else{
+                                    ToastManager.shared.show("Please complete all input fields.")
+                                }
+                                
+                                
+                                
                                            }) {
                                                Text(singlecoiType == "1" ? "sign up" : "Save")
                                                    .font(.system(size: 18, weight: .bold))
@@ -135,7 +179,7 @@ struct NylonstrinSignUp: View {
                         }.frame(maxWidth: .infinity,alignment: .leading)
                     }
                 }.padding(.horizontal,16)
-          
+            RacticeLoding()
         }.onTapGesture {
             concertField = nil
         }

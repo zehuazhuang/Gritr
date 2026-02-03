@@ -46,8 +46,16 @@ struct RsunburstBlock: View {
                         ForEach(oulponUsers,id: \.hykingUserId){item in
                           
                             HStack(spacing:15){
-                                Image(item.strumAvatar)
-                                        .resizable()
+                                Group {
+                                    if let cisbeatImg = UIImage(contentsOfFile: item.strumAvatar) {
+                                        Image(uiImage: cisbeatImg)
+                                            .resizable()
+                                    } else {
+                                        Image(item.strumAvatar)
+                                                .resizable()
+                                    }
+                                }
+                                
                                         .frame(width: 55, height: 55)
                                         .clipShape(Circle())
                                         .overlay(

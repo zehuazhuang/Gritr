@@ -44,6 +44,11 @@ struct HeadstockInit: View {
                 .cornerRadius(60)
                 
                 Button(action: {
+                    CriptionManager.shared.bdivisionShow()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        CriptionManager.shared.liefactionHide()
+                        SustainStorge.shared.epickingLIndex = 3
+                    }
                     
                 }) {
                     Text("I'm new")
@@ -67,6 +72,13 @@ struct HeadstockInit: View {
                         .underline(true)
                        
                 }.padding(.bottom,20)
+                    .onTapGesture {
+                        router.showScreen(.fullScreenCover) { _ in
+                            ToastHost {
+                                NylonstrinSignUp(singlecoiType: "1")
+                            }
+                                       }
+                    }
                 HStack(spacing: 5) {
                             
                             Button(action: {
@@ -111,6 +123,7 @@ struct HeadstockInit: View {
                         }
                         .padding(.bottom, 35)
             }.padding(.horizontal,16)
+            RacticeLoding()
         }
     }
 }

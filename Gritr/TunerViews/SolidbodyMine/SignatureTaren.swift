@@ -50,8 +50,16 @@ struct SignatureTaren: View {
                 Spacer().frame(height: 30)
                 ScrollView{
                     VStack(spacing:0){
-                        Image(coiltapUser.strumAvatar)
-                                        .resizable()
+                        Group {
+                            if let cisbeatImg = UIImage(contentsOfFile: coiltapUser.strumAvatar) {
+                                Image(uiImage: cisbeatImg)
+                                    .resizable()
+                            } else {
+                                Image(coiltapUser.strumAvatar)
+                                                .resizable()
+                            }
+                        }
+                        
                                         .frame(width: 115, height: 115)
                                         .clipShape(Circle())
                         Spacer().frame(height: 16)

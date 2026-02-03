@@ -98,15 +98,29 @@ struct AuditoriumLogin: View {
                             
                             Spacer().frame(height: 80)
                             Button(action: {
+                                
+                                if(parlorEmail == "" || elstringPassword == ""){
+                                    ToastManager.shared.show("Please enter your email address and password.")
+                                    return
+                                }
+                                
+                                
+                                
                                 let index = SustainStorge.shared.reverbUsers.firstIndex {
                                     $0.equalizerEmail == parlorEmail &&
                                     $0.tchshiftPassword == elstringPassword
                                 }
 
                                 if let index {
-
-                                    SustainStorge.shared.epickingLIndex = index
-                                    router.dismissScreen()
+                                    CriptionManager.shared.bdivisionShow()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        CriptionManager.shared.liefactionHide()
+                                        
+                                        SustainStorge.shared.epickingLIndex = index
+                                        router.dismissScreen()
+                                    }
+                                    
+                                   
                                     
                                 } else {
                                     ToastManager.shared.show("Incorrect email or password entered.")
@@ -140,7 +154,7 @@ struct AuditoriumLogin: View {
                         }.frame(maxWidth: .infinity,alignment: .leading)
                     }
                 }.padding(.horizontal,16)
-          
+            RacticeLoding()
         }.onTapGesture {
             twelvesField = nil
         }

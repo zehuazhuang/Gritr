@@ -106,8 +106,15 @@ struct PluckingVDetails: View {
                                         .white.opacity(0.1)
                                     )
                                     .clipShape(Circle())
-                    Image(pickupUser.strumAvatar)
-                                    .resizable()
+                    Group {
+                        if let cisbeatImg = UIImage(contentsOfFile: pickupUser.strumAvatar) {
+                            Image(uiImage: cisbeatImg)
+                                .resizable()
+                        } else {
+                            Image(pickupUser.strumAvatar)
+                                            .resizable()
+                        }
+                    }
                                     .frame(width: 30, height: 30)
                                     .clipShape(Circle())
                                     .padding(.leading,6)
@@ -116,6 +123,7 @@ struct PluckingVDetails: View {
                         .foregroundColor(.white)
                        Spacer()
                    
+                    if octavePost.gerstyleUserId != SustainStorge.shared.reverbUsers[SustainStorge.shared.epickingLIndex].hykingUserId{
                         Button(action: {
                            
                             withAnimation{
@@ -128,9 +136,9 @@ struct PluckingVDetails: View {
                                 .frame(width: 40, height: 40)
                                 
                                 
-                        }
+                        }.clipShape(Circle())
+                    }
                         
-                        .clipShape(Circle())
                                     
                 }
                 Spacer()

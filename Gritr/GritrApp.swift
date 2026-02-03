@@ -2,9 +2,16 @@
 import SwiftUI
 import SwiftfulRouting
 
+class AppPaplocke: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+}
+
 @main
 struct GritrApp: App {
-
+    @UIApplicationDelegateAdaptor(AppPaplocke.self) var appPaplocke
     @StateObject private var store = SustainStorge.shared
 
     var body: some Scene {

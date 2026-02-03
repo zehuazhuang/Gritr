@@ -77,6 +77,13 @@ struct OctaverRDateils: View {
                         }
                         Spacer()
                         Button(action: {
+                            
+                            if(panskirReport == ""){
+                                ToastManager.shared.show("Please select a type")
+                                return
+                            }
+                            
+                            
                             CriptionManager.shared.bdivisionShow()
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
