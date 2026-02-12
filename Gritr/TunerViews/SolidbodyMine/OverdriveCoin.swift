@@ -68,7 +68,17 @@ struct OverdriveCoin: View {
     
     @Environment(\.router) var router
     @StateObject private var iapManager = LechordreCoin.shared
-    let productIDs: Set<String> = ["lvbsvhxcgcrvesor", "dxismgcwewhrtezo"]
+    let productIDs: Set<String> = ["ypshgwjbbmxqkkwp",
+                                   "skzebqeqycrneyoh",
+                                   "uonzbchradoshmja",
+                                   "qwrjkmtnxpdaflvi",
+                                   "tzhtcvmfqdtdmygx",
+                                   "zyowzdcltpeeqibu",
+                                   "tknfwrpxqmdjlais",
+                                   "dihlavcqdhnzhxwv",
+                                   "wjkqtnpxrfmildav",
+                                   "twfjkkrnxpwqdmti",
+                                  ]
     
     var body: some View {
         
