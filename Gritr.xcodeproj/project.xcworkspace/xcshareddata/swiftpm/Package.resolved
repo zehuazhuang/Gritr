@@ -1,6 +1,15 @@
 {
-  "originHash" : "9af26285a0cfa899a5156998866f6d182048c01d3af9d8fc60cf867088e79a88",
+  "originHash" : "8ff74e1a7273e5125e9fbcae71976e18f9c9747892a5e9b24635c8c1ee10689d",
   "pins" : [
+    {
+      "identity" : "facebook-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/facebook-ios-sdk",
+      "state" : {
+        "revision" : "c19607d535864533523d1f437c84035e5fb101cf",
+        "version" : "14.1.0"
+      }
+    },
     {
       "identity" : "routing",
       "kind" : "remoteSourceControl",
@@ -8,6 +17,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "f5d8695ef977739606c1468e48403de0d28be1ff"
+      }
+    },
+    {
+      "identity" : "screenshield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JayantBadlani/ScreenShield",
+      "state" : {
+        "revision" : "9586e6a305426398250e0bdc19cbd463437f1af1",
+        "version" : "1.2.2"
       }
     },
     {

@@ -74,6 +74,17 @@ struct MahoganyChat: View {
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.white)
                        Spacer()
+                    Image("riadagatsp")
+                                    .resizable()
+                                    .frame(width: 26, height: 26).padding(.trailing,20)
+                                    .onTapGesture {
+                                        router.showScreen(.fullScreenCover) { _ in
+                                            ToastHost {
+                                                TiosoloistnIn(lectionUser: drcisebeUser)
+                                            }
+                                        }
+                                    }
+                    
                     Image("gritr_report")
                                     .resizable()
                                     .frame(width: 26, height: 26)

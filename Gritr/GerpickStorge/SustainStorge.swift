@@ -12,6 +12,101 @@ class SustainStorge: ObservableObject {
     private let palmuteChats = "palmuteChats"
     private let provisatKey = "provisatInfos"
     
+        let productIDs: Set<String> = ["ypshgwjbbmxqkkwp",
+                                       "skzebqeqycrneyoh",
+                                       "uonzbchradoshmja",
+                                       "qwrjkmtnxpdaflvi",
+                                       "tzhtcvmfqdtdmygx",
+                                       "zyowzdcltpeeqibu",
+                                       "tknfwrpxqmdjlais",
+                                       "dihlavcqdhnzhxwv",
+                                       "wjkqtnpxrfmildav",
+                                       "twfjkkrnxpwqdmti",
+                                      ]
+
+    
+     static var turjumpn: String = "69562465"
+    
+     static var bourretuern: String = "1.1.0"
+    
+    
+    @Published var thfootwork: Int = -1
+    
+    
+    
+    @Published var glissadmov: String = ""
+   
+    @Published var hshimmyat: String = ""
+    
+    @Published var pframoop: String = ""
+    
+    
+    private let key = "persistedStringKey"
+    
+    
+       func saveBoadagw(_ value: String) {
+           UserDefaults.standard.set(value, forKey: key)
+       }
+       
+      
+    func loadBoadagw() -> String {
+        return UserDefaults.standard.string(forKey: key) ?? ""
+    }
+    
+    @Published var cmixingkCoins: [phragmCoin] = [
+        phragmCoin(
+            id: "ypshgwjbbmxqkkwp",
+            latencyDoub: 0.99,
+            eolishrNum: 400
+        ),
+        phragmCoin(
+            id: "skzebqeqycrneyoh",
+            latencyDoub: 1.99,
+            eolishrNum: 800
+        ),
+        phragmCoin(
+            id: "uonzbchradoshmja",
+            latencyDoub: 4.99,
+            eolishrNum: 2450
+        ),
+        phragmCoin(
+            id: "qwrjkmtnxpdaflvi",
+            latencyDoub: 7.99,
+            eolishrNum: 3950
+        ),
+        phragmCoin(
+            id: "tzhtcvmfqdtdmygx",
+            latencyDoub: 9.99,
+            eolishrNum: 4900
+        ),
+        phragmCoin(
+            id: "zyowzdcltpeeqibu",
+            latencyDoub: 19.99,
+            eolishrNum: 9800
+        ),
+        phragmCoin(
+            id: "tknfwrpxqmdjlais",
+            latencyDoub: 29.99,
+            eolishrNum: 14900
+        ),
+        phragmCoin(
+            id: "dihlavcqdhnzhxwv",
+            latencyDoub: 49.99,
+            eolishrNum: 24500
+        ),
+        phragmCoin(
+            id: "wjkqtnpxrfmildav",
+            latencyDoub: 79.99,
+            eolishrNum: 39500
+        ),
+        phragmCoin(
+            id: "twfjkkrnxpwqdmti",
+            latencyDoub: 99.99,
+            eolishrNum: 49000
+        ),
+        
+    ]
+    
     @Published var epickingLIndex: Int {
             didSet {
                 defaults.set(epickingLIndex, forKey: "epickingLIndex")

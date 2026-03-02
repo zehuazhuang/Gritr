@@ -11,6 +11,7 @@ class EarmindfltCont: UIViewController, WKNavigationDelegate {
 
         
         let webConfiguration = WKWebViewConfiguration()
+        
         puremiView = WKWebView(frame: self.view.bounds, configuration: webConfiguration)
         puremiView.navigationDelegate = self
         self.view.addSubview(puremiView)

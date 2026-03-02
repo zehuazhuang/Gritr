@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD360BF32F52CD9600E6D642 /* ScreenShield in Frameworks */ = {isa = PBXBuildFile; productRef = DD360BF22F52CD9600E6D642 /* ScreenShield */; };
 		DDD187AB2F0A14D100F85622 /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = DDD187AA2F0A14D100F85622 /* Routing */; };
 		DDD187B02F0A197500F85622 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = DDD187AF2F0A197500F85622 /* SwiftfulRouting */; };
+		DDE974A72F52E80C00802A01 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = DDE974A62F52E80C00802A01 /* FacebookCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 			files = (
 				DDD187AB2F0A14D100F85622 /* Routing in Frameworks */,
 				DDD187B02F0A197500F85622 /* SwiftfulRouting in Frameworks */,
+				DD360BF32F52CD9600E6D642 /* ScreenShield in Frameworks */,
+				DDE974A72F52E80C00802A01 /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +91,8 @@
 			packageProductDependencies = (
 				DDD187AA2F0A14D100F85622 /* Routing */,
 				DDD187AF2F0A197500F85622 /* SwiftfulRouting */,
+				DD360BF22F52CD9600E6D642 /* ScreenShield */,
+				DDE974A62F52E80C00802A01 /* FacebookCore */,
 			);
 			productName = Gritr;
 			productReference = DDED3D942F03BB1A007B4E07 /* Gritr.app */;
@@ -119,6 +125,8 @@
 			packageReferences = (
 				DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */,
 				DDD187AE2F0A197500F85622 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+				DDC2ABB02F529CBA00FFE280 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				DD360BF12F52CD9600E6D642 /* XCRemoteSwiftPackageReference "ScreenShield" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDED3D952F03BB1A007B4E07 /* Products */;
@@ -277,8 +285,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Gritr/Gritr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -297,7 +306,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.gritr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -315,8 +324,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Gritr/Gritr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -335,7 +345,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.uitaacousticr.gritr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -372,6 +382,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DD360BF12F52CD9600E6D642 /* XCRemoteSwiftPackageReference "ScreenShield" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JayantBadlani/ScreenShield";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+		DDC2ABB02F529CBA00FFE280 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 		DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/obvios/Routing.git";
@@ -391,6 +417,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD360BF22F52CD9600E6D642 /* ScreenShield */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD360BF12F52CD9600E6D642 /* XCRemoteSwiftPackageReference "ScreenShield" */;
+			productName = ScreenShield;
+		};
 		DDD187AA2F0A14D100F85622 /* Routing */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DDD187A92F0A14D100F85622 /* XCRemoteSwiftPackageReference "Routing" */;
@@ -400,6 +431,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DDD187AE2F0A197500F85622 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
 			productName = SwiftfulRouting;
+		};
+		DDE974A62F52E80C00802A01 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDC2ABB02F529CBA00FFE280 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

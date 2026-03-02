@@ -12,73 +12,11 @@ struct OverdriveCoin: View {
         GridItem(.adaptive(minimum: 165), spacing: 13)
     ]
     
-    let cmixingkCoins: [phragmCoin] = [
-        phragmCoin(
-            id: "ypshgwjbbmxqkkwp",
-            latencyDoub: 0.99,
-            eolishrNum: 400
-        ),
-        phragmCoin(
-            id: "skzebqeqycrneyoh",
-            latencyDoub: 1.99,
-            eolishrNum: 800
-        ),
-        phragmCoin(
-            id: "uonzbchradoshmja",
-            latencyDoub: 4.99,
-            eolishrNum: 2450
-        ),
-        phragmCoin(
-            id: "qwrjkmtnxpdaflvi",
-            latencyDoub: 7.99,
-            eolishrNum: 3950
-        ),
-        phragmCoin(
-            id: "tzhtcvmfqdtdmygx",
-            latencyDoub: 9.99,
-            eolishrNum: 4900
-        ),
-        phragmCoin(
-            id: "zyowzdcltpeeqibu",
-            latencyDoub: 19.99,
-            eolishrNum: 9800
-        ),
-        phragmCoin(
-            id: "tknfwrpxqmdjlais",
-            latencyDoub: 29.99,
-            eolishrNum: 14900
-        ),
-        phragmCoin(
-            id: "dihlavcqdhnzhxwv",
-            latencyDoub: 49.99,
-            eolishrNum: 24500
-        ),
-        phragmCoin(
-            id: "wjkqtnpxrfmildav",
-            latencyDoub: 79.99,
-            eolishrNum: 39500
-        ),
-        phragmCoin(
-            id: "twfjkkrnxpwqdmti",
-            latencyDoub: 99.99,
-            eolishrNum: 49000
-        ),
-        
-    ]
+    
     
     @Environment(\.router) var router
     @StateObject private var iapManager = LechordreCoin.shared
-    let productIDs: Set<String> = ["ypshgwjbbmxqkkwp",
-                                   "skzebqeqycrneyoh",
-                                   "uonzbchradoshmja",
-                                   "qwrjkmtnxpdaflvi",
-                                   "tzhtcvmfqdtdmygx",
-                                   "zyowzdcltpeeqibu",
-                                   "tknfwrpxqmdjlais",
-                                   "dihlavcqdhnzhxwv",
-                                   "wjkqtnpxrfmildav",
-                                   "twfjkkrnxpwqdmti",
-                                  ]
+
     
     var body: some View {
         
@@ -124,7 +62,7 @@ struct OverdriveCoin: View {
                                                 .font(.system(size: 16, weight: .regular))
                                                 .foregroundColor(.white.opacity(0.5))
                         LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(cmixingkCoins,id: \.id) {item in
+                            ForEach(SustainStorge.shared.cmixingkCoins,id: \.id) {item in
                                     ZStack{
                                         HStack{
                                             Image("gritr_dazuan")
@@ -159,7 +97,7 @@ struct OverdriveCoin: View {
             }.padding(.horizontal,16)
             RacticeLoding()
         }.task {
-            await iapManager.setup(productIDs: productIDs)
+            await iapManager.setup(productIDs: SustainStorge.shared.productIDs)
         }
     }
 }
