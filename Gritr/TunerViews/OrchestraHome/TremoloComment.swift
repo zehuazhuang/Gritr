@@ -36,7 +36,7 @@ struct TremoloComment: View {
                                                         .font(.system(size: 28, weight: .bold))
                                                         .foregroundColor(.white)
                                 Spacer()
-                            }
+                            }.padding(.horizontal,16)
                             ForEach(sktopampComments,id: \.bentwohdCommId){item in
                                 let roundinUser = SustainStorge.shared.getRadiusUser(by: item.pmeteroUserId)
                                 HStack(alignment:.top,spacing:15){
@@ -76,10 +76,10 @@ struct TremoloComment: View {
                                                         }
                                     }
                                        
-                                    }
+                                    }.padding(.horizontal,16)
                             }
                         }
-                    }.padding(.horizontal,16)
+                    }
                     
                     VStack{
                         Spacer()

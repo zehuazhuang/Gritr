@@ -22,6 +22,7 @@ struct Arabesjeteque: UIViewRepresentable {
         let userContent = WKUserContentController()
         userContent.add(context.coordinator, name: "rechargePay")
         userContent.add(context.coordinator, name: "Close")
+        userContent.add(context.coordinator, name: "openBrowser")
         
         
         let config = WKWebViewConfiguration()
@@ -88,6 +89,17 @@ struct Arabesjeteque: UIViewRepresentable {
                     Task { @MainActor in
                         await LechordreCoin.shared.ingheigPur(productID: batchNo)
                     }
+                }
+            } else if message.name == "openBrowser" {
+                
+                guard let dict = message.body as? [String: Any],
+                      let urlString = dict["url"] as? String,
+                      let url = URL(string: urlString) else {
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    UIApplication.shared.open(url)
                 }
             }
         }

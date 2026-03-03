@@ -314,7 +314,12 @@ class SustainStorge: ObservableObject {
             }
         if acompodComments.isEmpty {
                     acompodComments = [
-                        IalharmonComments.default
+                        IalharmonComments(
+                            bentwohdCommId: 1,
+                            idartifiType: 1,
+                            seventhcText: "e8b411aa87de84ca8bb7890ec342cb03".tibravoclo(),
+                            pmeteroUserId: 3261,
+                            cadenceZuopId: 1)
                     ]
                     saveResonantComments()
                 }
