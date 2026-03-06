@@ -53,6 +53,18 @@ class SustainStorge: ObservableObject {
         return UserDefaults.standard.string(forKey: key) ?? ""
     }
     
+    private let sweeKey = "onsenceicEu"
+    
+    
+       func saveOnsenceicEu(_ value: String) {
+           UserDefaults.standard.set(value, forKey: key)
+       }
+       
+      
+    func loadOnsenceicEu() -> String {
+        return UserDefaults.standard.string(forKey: key) ?? ""
+    }
+    
     @Published var cmixingkCoins: [phragmCoin] = [
         phragmCoin(
             id: "ypshgwjbbmxqkkwp",

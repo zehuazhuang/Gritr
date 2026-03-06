@@ -6,6 +6,7 @@ import SwiftfulRouting
 struct HeadstockInit: View {
     @State private var baritoneCheck = true
     @Environment(\.router) var router
+    @State private var flamicsCheck = false
     var body: some View {
         
         ZStack{
@@ -16,12 +17,18 @@ struct HeadstockInit: View {
             VStack(spacing:20){
                 Spacer()
                 Button(action: {
-                    
-                    router.showScreen(.fullScreenCover) { _ in
-                        ToastHost {
-                                AuditoriumLogin()
-                            }
-                                   }
+                    if SustainStorge.shared.loadOnsenceicEu() != "" {
+                        router.showScreen(.fullScreenCover) { _ in
+                            ToastHost {
+                                    AuditoriumLogin()
+                                }
+                                       }
+                    }else{
+                        withAnimation{
+                            flamicsCheck = true
+                        }
+                    }
+                   
                 }) {
                     Text("Login by email")
                         .font(.system(size: 18, weight: .bold))
@@ -44,11 +51,21 @@ struct HeadstockInit: View {
                 .cornerRadius(60)
                 
                 Button(action: {
-                    CriptionManager.shared.bdivisionShow()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                        CriptionManager.shared.liefactionHide()
-                        SustainStorge.shared.epickingLIndex = 3
+                    
+                    if SustainStorge.shared.loadOnsenceicEu() != "" {
+                        CriptionManager.shared.bdivisionShow()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                            CriptionManager.shared.liefactionHide()
+                            SustainStorge.shared.epickingLIndex = 3
+                        }
+                    }else{
+                        withAnimation{
+                            flamicsCheck = true
+                        }
                     }
+                    
+                    
+                   
                     
                 }) {
                     Text("I'm new")
@@ -73,11 +90,18 @@ struct HeadstockInit: View {
                        
                 }.padding(.bottom,20)
                     .onTapGesture {
-                        router.showScreen(.fullScreenCover) { _ in
-                            ToastHost {
-                                NylonstrinSignUp(singlecoiType: "1")
+                        if SustainStorge.shared.loadOnsenceicEu() != "" {
+                            router.showScreen(.fullScreenCover) { _ in
+                                ToastHost {
+                                    NylonstrinSignUp(singlecoiType: "1")
+                                }
+                                           }
+                        }else{
+                            withAnimation{
+                                flamicsCheck = true
                             }
-                                       }
+                        }
+                     
                     }
                 HStack(spacing: 5) {
                             
@@ -123,6 +147,10 @@ struct HeadstockInit: View {
                         }
                         .padding(.bottom, 35)
             }.padding(.horizontal,16)
+            if flamicsCheck {
+                MapwoodleEula(pibowAho: $flamicsCheck)
+                    .transition(.opacity)
+            }
             RacticeLoding()
         }
     }

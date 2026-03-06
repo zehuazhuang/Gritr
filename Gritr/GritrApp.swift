@@ -104,7 +104,7 @@ struct GritrApp: App {
                                                     calendar: Calendar.current,
                                                     year: 2026,
                                                     month: 3,
-                                                    day: 7,
+                                                    day: 12,
                                                    
                                                 ).date!
 
